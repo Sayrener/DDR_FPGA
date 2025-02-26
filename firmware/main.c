@@ -7,12 +7,7 @@
 #include <libbase/console.h>
 #include <generated/csr.h>
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-
-#define SYS_CLOCK_HZ 100000000  // Remplacer par la fréquence de votre horloge (100 MHz par exemple)
-
-#include <stdint.h>
+#include "ddr.h"
 
 /*-----------------------------------------------------------------------*/
 /* Uart                                                                  */
@@ -90,13 +85,8 @@ static void help(void)
 #ifdef CSR_LEDS_BASE
 	puts("led                - Led demo");
 #endif
-	puts("donut              - Spinning Donut demo");
-	puts("helloc             - Hello C");
-#ifdef WITH_CXX
-	puts("hellocpp           - Hello C++");
-#endif
 #ifdef CSR_VIDEO_FRAMEBUFFER_BASE
-	puts("vga_test           - Test VGA");
+	puts("ddr                - Dance Dance Revolution");
 #endif
 }
 
@@ -163,126 +153,11 @@ static void led_cmd(void)
 }
 #endif
 
-// Fonction pour dessiner un carré
-static void draw_square(uint32_t* buffer_base, int x, int y, int SQUARE_SIZE, uint32_t color) {
-    for (int i = 0; i < SQUARE_SIZE; i++) {
-        for (int j = 0; j < SQUARE_SIZE; j++) {
-            buffer_base[(y + i) * SCREEN_WIDTH + (x + j)] = color;
-        }
-    }
-}
-
-// Fonction pour effacer l'écran
-static void clear_screen(uint32_t* buffer_base) {
-    for (int i = 0; i < SCREEN_WIDTH * SCREEN_HEIGHT; i++) {
-        buffer_base[i] = 0; // Noir
-    }
-}
-
-// Fonction de délai en millisecondes
-static void delay_ms(uint32_t ms) {
-    // Calculer la valeur à charger dans le timer
-    uint32_t load_value = SYS_CLOCK_HZ/1000*ms;
-
-    timer0_en_write(0);
-    timer0_reload_write(0);          // Définir la valeur de rechargement (pour un timer continu)
-    timer0_load_write(load_value);            // Charger la valeur dans le timer   
-    timer0_en_write(1);                       // Activer le timer
-    timer0_update_value_write(1);
-    // Attendre que le timer expire
-    while(timer0_value_read())
-    {
-    	timer0_update_value_write(1);
-    }
-    ;  // Vérifier si le timer a expiré (bit 0 de la valeur)
-
-    // Désactiver le timer après utilisation
-    timer0_en_write(0);
-}
-
-// Fonction de délai en millisecondes
-static void delay_us(uint32_t us) {
-    // Calculer la valeur à charger dans le timer
-    uint32_t load_value = SYS_CLOCK_HZ/1000000*us;
-
-    timer0_en_write(0);
-    timer0_reload_write(0);          // Définir la valeur de rechargement (pour un timer continu)
-    timer0_load_write(load_value);            // Charger la valeur dans le timer   
-    timer0_en_write(1);                       // Activer le timer
-    timer0_update_value_write(1);
-    // Attendre que le timer expire
-    while(timer0_value_read())
-    {
-    	timer0_update_value_write(1);
-    }
-    ;  // Vérifier si le timer a expiré (bit 0 de la valeur)
-
-    // Désactiver le timer après utilisation
-    timer0_en_write(0);
-}
-
-
-#ifdef CSR_VIDEO_FRAMEBUFFER_BASE
-static void vga_test(void) {
-    // Configurer les paramètres de timing pour un écran VGA de 800x600 à 60Hz
-    /*video_framebuffer_vtg_hres_write(SCREEN_WIDTH);  
-    video_framebuffer_vtg_vres_write(SCREEN_HEIGHT);  
-    video_framebuffer_vtg_hsync_start_write(856);  // Horizontal sync start
-	video_framebuffer_vtg_hsync_end_write(976);    // Horizontal sync end
-	video_framebuffer_vtg_hscan_write(1056);       // Total pixels per line
-	video_framebuffer_vtg_vsync_start_write(601);  // Vertical sync start
-	video_framebuffer_vtg_vsync_end_write(604);    // Vertical sync end
-	video_framebuffer_vtg_vscan_write(625);        // Total lines per frame   */    
-
-    // Activer le VTG pour commencer à générer les signaux de synchronisation
-    //video_framebuffer_vtg_enable_write(1);  
-
-    // Obtenir la base du framebuffer
-    uint32_t* framebuffer = (uint32_t*)video_framebuffer_dma_base_read();
-
-    int size = 20;
-
-    int y = SCREEN_HEIGHT - size;
-
-    clear_screen(framebuffer);
-
-    while (y >= 0) {
-
-
-        clear_screen(framebuffer);
-        
-        draw_square(framebuffer, 390, y, size, 0xF0F00F); // Carré rouge
-        delay_ms(100);
-        y -= 5;
-    }
-}
-#endif
-
-extern void donut(void);
-
-static void donut_cmd(void)
+static void ddr_cmd(void)
 {
-	printf("Donut demo...\n");
-	donut();
+	printf("Dance Dance Revolution...\n");
+	ddr();
 }
-
-extern void helloc(void);
-
-static void helloc_cmd(void)
-{
-	printf("Hello C demo...\n");
-	helloc();
-}
-
-#ifdef WITH_CXX
-extern void hellocpp(void);
-
-static void hellocpp_cmd(void)
-{
-	printf("Hello C++ demo...\n");
-	hellocpp();
-}
-#endif
 
 /*-----------------------------------------------------------------------*/
 /* Console service / Main                                                */
@@ -304,17 +179,9 @@ static void console_service(void)
 	else if(strcmp(token, "led") == 0)
 		led_cmd();
 #endif
-	else if(strcmp(token, "donut") == 0)
-		donut_cmd();
-	else if(strcmp(token, "helloc") == 0)
-		helloc_cmd();
-#ifdef WITH_CXX
-	else if(strcmp(token, "hellocpp") == 0)
-		hellocpp_cmd();
-#endif
 #ifdef CSR_VIDEO_FRAMEBUFFER_BASE
-	else if(strcmp(token, "vga_test") == 0)
-		vga_test();
+	else if(strcmp(token, "ddr") == 0)
+		ddr_cmd();
 #endif
 	prompt();
 }

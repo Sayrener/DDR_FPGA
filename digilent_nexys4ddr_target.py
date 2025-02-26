@@ -24,11 +24,13 @@ from litedram.phy import s7ddrphy
 
 from liteeth.phy.rmii import LiteEthPHYRMII
 
-from litedram.frontend.dma import LiteDRAMDMAReader, LiteDRAMDMAWriter
-from litex.soc.cores.dma import WishboneDMAReader, WishboneDMAWriter
+# from litedram.frontend.dma import LiteDRAMDMAReader, LiteDRAMDMAWriter
+# from litex.soc.cores.dma import WishboneDMAReader, WishboneDMAWriter
 
-from litex.soc.interconnect import wishbone
+# from litex.soc.interconnect import wishbone
 from litex.soc.cores import gpio
+
+from module import sevensegment
 
 # # DMA Module ---------------------------------------------------------------------------------------
 
@@ -70,7 +72,7 @@ class _CRG(LiteXModule):
 # BaseSoC ------------------------------------------------------------------------------------------
 
 class BaseSoC(SoCCore):
-    def __init__(self, sys_clk_freq=75e6,
+    def __init__(self, sys_clk_freq=100e6,
         with_ethernet          = False,
         with_etherbone         = False,
         eth_ip                 = "192.168.1.50",
@@ -120,6 +122,12 @@ class BaseSoC(SoCCore):
         user_buttons = Cat(*[platform.request("user_btn", i) for i in range(5)])
         self.submodules.buttons = gpio.GPIOIn(user_buttons)
 
+        # 7segments Display
+        SoCCore.add_csr(self,"display")
+        display_segments = Cat(*[platform.request("display_segment", i) for i in range(8)])
+        display_digits = Cat(*[platform.request("display_digit", i) for i in range(8)])
+        self.submodules.display = sevensegment.SevenSegment(display_segments,display_digits)
+
         # Ethernet / Etherbone ---------------------------------------------------------------------
         if with_ethernet or with_etherbone:
             self.ethphy = LiteEthPHYRMII(
@@ -136,7 +144,7 @@ class BaseSoC(SoCCore):
             if with_video_terminal:
                 self.add_video_terminal(phy=self.videophy, timings="800x600@60Hz", clock_domain="vga")
             if with_video_framebuffer:
-                self.add_video_framebuffer(phy=self.videophy, timings="800x600@60Hz", clock_domain="vga")
+                self.add_video_framebuffer(phy=self.videophy, timings="800x600@60Hz", clock_domain="vga", format="rgb332")
 
         # Leds -------------------------------------------------------------------------------------
         if with_led_chaser:
@@ -149,7 +157,7 @@ class BaseSoC(SoCCore):
 def main():
     from litex.build.parser import LiteXArgumentParser
     parser = LiteXArgumentParser(platform=digilent_nexys4ddr_platform.Platform, description="LiteX SoC on Nexys4DDR.")
-    parser.add_target_argument("--sys-clk-freq", default=75e6, type=float,   help="System clock frequency.")
+    parser.add_target_argument("--sys-clk-freq", default=100e6, type=float,   help="System clock frequency.")
     ethopts = parser.target_group.add_mutually_exclusive_group()
     ethopts.add_argument("--with-ethernet",         action="store_true",     help="Enable Ethernet support.")
     ethopts.add_argument("--with-etherbone",        action="store_true",     help="Enable Etherbone support.")

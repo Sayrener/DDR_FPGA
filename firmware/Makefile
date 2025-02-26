@@ -3,12 +3,7 @@ BUILD_DIR?=../build/
 include $(BUILD_DIR)/software/include/generated/variables.mak
 include $(SOC_DIRECTORY)/software/common.mak
 
-OBJECTS   = donut.o helloc.o crt0.o main.o
-ifdef WITH_CXX
-	OBJECTS += hellocpp.o
-	CFLAGS += -DWITH_CXX
-endif
-
+OBJECTS   = ddr.o delay.o drawings.o display.o music.o crt0.o main.o
 
 all: ddrapp.bin
 
@@ -37,13 +32,7 @@ endif
 # pull in dependency info for *existing* .o files
 -include $(OBJECTS:.o=.d)
 
-donut.o: CFLAGS   += -w
-
 VPATH = $(BIOS_DIRECTORY):$(BIOS_DIRECTORY)/cmds:$(CPU_DIRECTORY)
-
-
-%.o: %.cpp
-	$(compilexx)
 
 %.o: %.c
 	$(compile)

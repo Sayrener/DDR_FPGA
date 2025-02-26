@@ -1,2 +1,2 @@
 cd firmware
-./ddrapp.py --build-path ../build --with-cxx
+./ddrapp.py --build-path ../build

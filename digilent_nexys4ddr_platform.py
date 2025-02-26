@@ -51,6 +51,24 @@ _io = [
     ("user_sw", 14, Pins("U11"), IOStandard("LVCMOS33")),
     ("user_sw", 15, Pins("V10"), IOStandard("LVCMOS33")),
 
+    # 7-Segments
+    ("display_digit",   0, Pins("J17"), IOStandard("LVCMOS33")),
+    ("display_digit",   1, Pins("J18"), IOStandard("LVCMOS33")),
+    ("display_digit",   2, Pins("T9"),  IOStandard("LVCMOS33")),
+    ("display_digit",   3, Pins("J14"), IOStandard("LVCMOS33")),
+    ("display_digit",   4, Pins("P14"), IOStandard("LVCMOS33")),
+    ("display_digit",   5, Pins("T14"), IOStandard("LVCMOS33")),
+    ("display_digit",   6, Pins("K2"),  IOStandard("LVCMOS33")),
+    ("display_digit",   7, Pins("U13"), IOStandard("LVCMOS33")),
+    ("display_segment", 0, Pins("T10"), IOStandard("LVCMOS33")),
+    ("display_segment", 1, Pins("R10"), IOStandard("LVCMOS33")),
+    ("display_segment", 2, Pins("K16"), IOStandard("LVCMOS33")),
+    ("display_segment", 3, Pins("K13"), IOStandard("LVCMOS33")),
+    ("display_segment", 4, Pins("P15"), IOStandard("LVCMOS33")),
+    ("display_segment", 5, Pins("T11"), IOStandard("LVCMOS33")),
+    ("display_segment", 6, Pins("L18"), IOStandard("LVCMOS33")),
+    ("display_segment", 7, Pins("H15"), IOStandard("LVCMOS33")),
+
     # Buttons
     ("user_btn", 0, Pins("N17"), IOStandard("LVCMOS33")),
     ("user_btn", 1, Pins("P18"), IOStandard("LVCMOS33")),
