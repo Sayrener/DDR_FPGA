@@ -10,6 +10,7 @@
 #define BUTTON_CENTER           0x01
 #define BUTTON_NONE             0x00
 #define BUTTON_ALL_BUT_MID      0x1E
+#define BUTTON_ALL              0x1F
 
 void ddr(void);
 
@@ -24,6 +25,4 @@ typedef struct {
     int y;
     Direction direction;
 } ActiveArrow;
-
-
 

@@ -93,7 +93,7 @@ void ddr(void)
     int totalEvents = numEvents();
 
     // Boucle de jeu
-    while (buttons_in_read() != BUTTON_ALL_BUT_MID)
+    while (buttons_in_read() != BUTTON_ALL)
     {
         // Dessiner les carrés cibles
         draw_square(framebuffer, 104, 40, 0xFF);
