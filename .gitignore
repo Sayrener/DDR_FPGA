@@ -31,5 +31,5 @@ pythondata-misc-usb_ohci/
 pythondata-software-compiler_rt/
 pythondata-software-picolibc/
 valentyusb/
-.jou
-.log
+*.jou
+*.log
