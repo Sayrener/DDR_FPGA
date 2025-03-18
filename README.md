@@ -6,7 +6,7 @@ C'est un jeu vidéo de rythme qui vise à reproduire une chorégraphie en appuya
 Vous pouvez voir un exemple ici : [Vidéo Dance Dance Revolution](https://www.youtube.com/watch?v=T2e1tsnKkiI)\
 La carte FPGA à notre disposition est une NexysA7-50T de Digilent.\
 LiteX est un framework facile d'utilisation et efficace qui fourni une infrastructure pour créer des Cores/SoCs FPGA.\
-Vous pouvez retrouver ce framework à l'adresse suivante : [Github Litex](https://github.com/enjoy-digital/litex)\
+Vous pouvez retrouver ce framework à l'adresse suivante : [Github Litex](https://github.com/enjoy-digital/litex) \
 
 ## Contenu
 
