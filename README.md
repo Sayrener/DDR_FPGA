@@ -64,5 +64,13 @@ Leds\
 (Décrire les différents modules)\
 A noter que certains modules font déjà parti de Litex et qu'il suffit d'appeler une fonction pour les inclure dans le SoC.\
 Tandis que pour les autres il faut les définir.\
+Ajout d'interruption sur le timer
+
+## Etat actuel du jeu
+Problème avec l'affichage. On peut voir un clignotement lors du rafraichissement de l'image.\
+La piste est de déclarer soit même son module et de ne pas utiliser celui de litex. Mais pourtant en ayant vérifié le code source du VGA de litex il semble bien codé.\
+Pas de musique pour l'instant.\
+
+Mettre ce qui permet de télécharger une musique et de la transformer en timestamps
 
 
