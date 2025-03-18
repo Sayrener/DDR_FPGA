@@ -3,9 +3,10 @@
 Le but de ce projet est de développer un jeu vidéo sur un FPGA à l'aide de Litex.\
 Nous avons choisi Dance Dance Revolution comme jeu vidéo.\
 C'est un jeu vidéo de rythme qui vise à reproduire une chorégraphie en appuyant sur un tapis de danse composé de flèches avec ses pieds.\
+Vous pouvez voir un exemple ici : [Vidéo Dance Dance Revolution](https://www.youtube.com/watch?v=T2e1tsnKkiI)\
 La carte FPGA à notre disposition est une NexysA7-50T de Digilent.\
 LiteX est un framework facile d'utilisation et efficace qui fourni une infrastructure pour créer des Cores/SoCs FPGA.\
-Vous pouvez retrouver ce framework à l'adresse suivante : https://github.com/enjoy-digital/litex\
+Vous pouvez retrouver ce framework à l'adresse suivante : [Github Litex](https://github.com/enjoy-digital/litex)\
 
 ## Contenu
 
