@@ -75,4 +75,6 @@ Pas de musique pour l'instant.\
 
 Mettre ce qui permet de télécharger une musique et de la transformer en timestamps
 
+## Déroulement du jeu
+
 
