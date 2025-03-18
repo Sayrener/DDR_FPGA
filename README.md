@@ -57,7 +57,9 @@ Ce dossier contient tous les fichiers/dossiers nécessaires à l'implémentation
 Le choix du processeur s'est porté sur un picorv32 car il ne prend pas beaucoup de mémoire.\
 Autour nous avons attribué de la ROM, de la SRAM et de la DRAM.\
 Ensuite nous avons déclaré les différents modules dont nous avions besoin autour de ce processeur pour constituer notre SoC.\
-VGA\
+VGA (Décrire le VGA)\
+100MHz taille sram dram rom \
+Framebuffer\
 7 segments\
 Boutons\
 Leds\
