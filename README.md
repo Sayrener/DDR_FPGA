@@ -53,7 +53,8 @@ Ce dossier contient tous les fichiers/dossiers nécessaires à l'implémentation
 # Chargement du firmware dans le SoC
 ./load_firmware.sh
 ```
-## Description
+## Architecture SoC
+
 Le choix du processeur s'est porté sur un picorv32 car il ne prend pas beaucoup de mémoire.\
 Autour nous avons attribué de la ROM, de la SRAM et de la DRAM.\
 Ensuite nous avons déclaré les différents modules dont nous avions besoin autour de ce processeur pour constituer notre SoC.\
@@ -68,13 +69,17 @@ A noter que certains modules font déjà parti de Litex et qu'il suffit d'appele
 Tandis que pour les autres il faut les définir.\
 Ajout d'interruption sur le timer
 
-## Etat actuel du jeu
+## Architecture Jeu
+
+
+
+## Déroulement du jeu
+
+## Problèmes à résoudre
 Problème avec l'affichage. On peut voir un clignotement lors du rafraichissement de l'image.\
 La piste est de déclarer soit même son module et de ne pas utiliser celui de litex. Mais pourtant en ayant vérifié le code source du VGA de litex il semble bien codé.\
 Pas de musique pour l'instant.\
 
 Mettre ce qui permet de télécharger une musique et de la transformer en timestamps
-
-## Déroulement du jeu
 
 
