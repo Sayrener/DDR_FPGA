@@ -82,4 +82,6 @@ Pas de musique pour l'instant.\
 
 Mettre ce qui permet de télécharger une musique et de la transformer en timestamps
 
+## Auteurs
+Dans le cadre d'un projet à l'ENSTA Bretagne, Tangi Brandého et Antoine Madrelle ont réalisé ce projet
 
