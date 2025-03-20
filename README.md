@@ -85,6 +85,8 @@ Les 16 Leds de la carte ont été instanciées.
 
 **IMAGE**
 
+Lorsque l'on instancie des modules on ajoute également des registres pour venir les piloter
+
 ## Architecture Jeu
 Ajout d'interruption sur le timer
 
