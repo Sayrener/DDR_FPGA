@@ -70,6 +70,7 @@ On se retrouve donc avec une pixel clock de 40 MHz.\
 Le framebuffer est comme son nom l'indique un buffer qui va stocker l'image à envoyer au controleur VGA via DMA.\
 Le format de chaque pixel stocké est en RGB332, donc un octet pour chaque pixel. Ce qui nous fait 800 * 600 * 8 = 480 KB\
 Le choix du format RGB332 a été fait pour réduire au maximum la taille du framebuffer à transmettre via DMA.\
+Lorsque l'on instancie des modules on ajoute également des registres pour venir les piloter.
 
 ### 7 segments
 
@@ -85,7 +86,7 @@ Les 16 Leds de la carte ont été instanciées.
 
 **IMAGE**
 
-Lorsque l'on instancie des modules on ajoute également des registres pour venir les piloter
+
 
 ## Architecture Jeu
 Ajout d'interruption sur le timer
@@ -101,5 +102,5 @@ Pas de musique pour l'instant.\
 Mettre ce qui permet de télécharger une musique et de la transformer en timestamps
 
 ## Auteurs
-Dans le cadre d'un projet à l'ENSTA Bretagne, Tangi Brandého et Antoine Madrelle ont réalisé ce projet
+Dans le cadre d'un projet d'application système à l'ENSTA Bretagne, Tangi Brandého et Antoine Madrelle ont réalisé ce projet.
 
