@@ -58,22 +58,32 @@ Ce dossier contient tous les fichiers/dossiers nécessaires à l'implémentation
 Le choix du processeur s'est porté sur un picorv32 car il ne prend pas beaucoup de mémoire. Ce processeur est cadencé à 100MHz.\
 Autour nous avons attribué de la ROM (32 KiB), de la SRAM (128 KiB) et de la DRAM (128MiB).\
 Ensuite nous avons déclaré les différents modules dont nous avions besoin autour de ce processeur pour constituer notre SoC.\
-
-VGA (Décrire le VGA)\
-Le VGA choisi est un format SVGA (Super Video Graphics Array) en 60 Hz. DOnc cela correspond aux dimensions 800x600 pixels selon les standards que l'on peut retrouver ici : [Spécification SVGA 800x600](http://www.tinyvga.com/vga-timing/800x600@60Hz)
-
-Framebuffer\
-
-7 segments\
-
-Boutons\
-
-Leds\
-
-(Décrire les différents modules)\
 A noter que certains modules font déjà parti de Litex et qu'il suffit d'appeler une fonction pour les inclure dans le SoC.\
 Tandis que pour les autres il faut les définir.\
 
+### VGA
+Le VGA choisi est un format SVGA (Super Video Graphics Array) en 60 Hz. Donc cela correspond aux dimensions 800x600 pixels selon les standards que l'on peut retrouver ici : [Spécification SVGA 800x600](http://www.tinyvga.com/vga-timing/800x600@60Hz)\
+On se retrouve donc avec une pixel clock de 40 MHz.\
+
+### Framebuffer
+
+Le framebuffer est comme son nom l'indique un buffer qui va stocker l'image à envoyer au controleur VGA via DMA.\
+Le format de chaque pixel stocké est en RGB332, donc un octet pour chaque pixel. Ce qui nous fait 800 * 600 * 8 = 480 KB\
+Le choix du format RGB332 a été fait pour réduire au maximum la taille du framebuffer à transmettre via DMA.\
+
+### 7 segments
+
+Nous avons instancié 8 blocs de 7 segments.
+
+### Boutons
+
+Les 5 Boutons de la carte ont été instanciés.\
+
+### Leds
+
+Les 16 Leds de la carte ont été instanciées.\
+
+IMAGE
 
 ## Architecture Jeu
 Ajout d'interruption sur le timer
