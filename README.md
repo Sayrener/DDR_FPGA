@@ -77,13 +77,13 @@ Nous avons instancié 8 blocs de 7 segments.
 
 ### Boutons
 
-Les 5 Boutons de la carte ont été instanciés.\
+Les 5 Boutons de la carte ont été instanciés.
 
 ### Leds
 
-Les 16 Leds de la carte ont été instanciées.\
+Les 16 Leds de la carte ont été instanciées.
 
-IMAGE
+**IMAGE**
 
 ## Architecture Jeu
 Ajout d'interruption sur le timer
